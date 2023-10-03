@@ -17,19 +17,19 @@ description = "Веб сервис реализованный при помощ�
 app = FastAPI(title=title, description=description)
 
 
-redis_conn = redis.Redis(host='localhost', port=6379, decode_responses=True)
+redis_conn = redis.Redis(host='redis', port=6379, decode_responses=True)
 
 
 
 
-@app.post("/write_data/",status_code=status.HTTP_201_CREATED, tags=["Write Data To DB"],description='Запись в базу данных')
+@app.post("/write_data/", tags=["Write Data To DB"],description='Запись в базу данных')
 async def write_data(item:Item):
     """Запись данных в базу данных """
     try:
         res = redis_conn.set(item.phone, item.address)
         return res
-    except BaseException as e:
-        raise {"Details": e}
+    except BaseException:
+        return {"Details:": f"BAD_REQUEST {status.HTTP_400_BAD_REQUEST}"}
 
 
 
@@ -38,8 +38,8 @@ async def retrieve_data(phone: str):
     """Извлечение данных из базы по ключу phone"""
     try:
         res = redis_conn.get(phone)
-    except BaseException as e:
-        raise {"Details": e}
+    except BaseException:
+        return {"Details:": f"BAD_REQUEST {status.HTTP_400_BAD_REQUEST}"}
     return {"Address": res}
 
 
