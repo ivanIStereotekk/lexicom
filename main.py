@@ -2,7 +2,6 @@ import uvicorn
 from starlette import status
 from fastapi import FastAPI
 import redis
-from redis.exceptions import RedisError
 from pydantic import BaseModel
 
 
@@ -29,7 +28,7 @@ async def write_data(item:Item):
     try:
         res = redis_conn.set(item.phone, item.address)
         return res
-    except RedisError as e:
+    except BaseException as e:
         raise {"Details": e}
 
 
@@ -39,7 +38,7 @@ async def retrieve_data(phone: str):
     """Извлечение данных из базы по ключу phone"""
     try:
         res = redis_conn.get(phone)
-    except RedisError as e:
+    except BaseException as e:
         raise {"Details": e}
     return {"Address": res}
 
