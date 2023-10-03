@@ -3,7 +3,14 @@ from starlette import status
 from fastapi import FastAPI
 import redis
 from redis.exceptions import RedisError
-from shemas import Item
+from pydantic import BaseModel
+
+
+class Item(BaseModel):
+    phone: str
+    address: str
+
+
 
 title = "LEXICOM - Тестовая работа Ивана Гончарова"
 description = "Веб сервис реализованный при помощи Redis и FastAPI"
