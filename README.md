@@ -50,7 +50,7 @@ LEFT JOIN full_names ON full_names.name = short_names.name
 ```sql
 INSERT INTO full_names (status)
 SELECT status FROM short_names
-WHERE full_names.names LIKE short_names.names;
+WHERE full_names.names LIKE short_names.names + '%';
 ```
 
 
