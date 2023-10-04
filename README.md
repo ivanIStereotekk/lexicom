@@ -19,6 +19,10 @@ docker compose up
 #
 #
 swagger - localhost:8000/docs
+
+
+
+#
 redoc - localhost:8000/redoc
 
 
