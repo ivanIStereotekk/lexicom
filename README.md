@@ -16,8 +16,18 @@ gh repo clone ivanIStereotekk/lexicom
 ```bash
 docker compose up
 ```
+#
+#
+swagger - localhost:8000/docs
+redoc - localhost:8000/redoc
+
+
+
+![Снимок экрана 2023-10-03 в 23 17 59](https://github.com/ivanIStereotekk/lexicom/assets/18102432/44b7dfeb-7381-4d7e-937a-47da769da764)
 
 _👀 В течении минуты кластер дожен заработать._
+
+
 
 ## Features
 
